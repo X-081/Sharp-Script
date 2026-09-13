@@ -63,12 +63,12 @@ namespace Sharp_Script
                     var filePath = args[0];
                     var psi = new ProcessStartInfo
                     {
-                        FileName = "dotnet",
-                        Arguments = $"run --file \"{filePath}\"",
-                        UseShellExecute = false,
+                        FileName = "cmd.exe",
+                        Arguments = $"/k dotnet run --file \"{filePath}\"",
+                        UseShellExecute = true,
                         WorkingDirectory = Path.GetDirectoryName(filePath)!
                     };
-                    Process.Start(psi);
+                    using var process = Process.Start(psi);
                     return 0;
                 }
             }
